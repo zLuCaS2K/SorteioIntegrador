@@ -1,3 +1,3 @@
 package com.lucasprojects.sorteiointegrador.entities
 
-data class Team(val name: String)
+data class Team(val idTeam: Int, val name: String)

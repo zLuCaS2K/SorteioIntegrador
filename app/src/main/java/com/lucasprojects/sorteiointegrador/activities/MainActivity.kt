@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.lucasprojects.sorteiointegrador.R
+import com.lucasprojects.sorteiointegrador.constants.Constants
+import com.lucasprojects.sorteiointegrador.entities.Team
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,5 +27,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.navOnline -> textMode.text = getString(R.string.on)
             }
         }
+        /** Criação dos equipes */
+        createTeamsArrays()
+    }
+
+    private fun createTeamsArrays() {
+        val teams = ArrayList<Team>()
+        teams.add(Team(Constants.TEAMS_NAMES.TEAMONE))
+        teams.add(Team(Constants.TEAMS_NAMES.TEAMTWO))
+        teams.add(Team(Constants.TEAMS_NAMES.TEAMTHREE))
+        teams.add(Team(Constants.TEAMS_NAMES.TEAMFOUR))
+        teams.add(Team(Constants.TEAMS_NAMES.TEAMFIVE))
     }
 }

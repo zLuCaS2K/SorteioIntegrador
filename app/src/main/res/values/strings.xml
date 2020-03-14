@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Sorteio Integrador</string>
+    <string name="app_description">Desafio</string>
+    <string name="mode_offline">Modo Offline</string>
+    <string name="mode_online">Modo Online</string>
+    <string name="on">Ativado</string>
+    <string name="off">Desativado</string>
 </resources>

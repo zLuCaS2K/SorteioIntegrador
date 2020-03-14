@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navOffline"
+        android:icon="@drawable/offline"
+        android:title="@string/mode_offline" />
+
+    <item
+        android:id="@+id/navOnline"
+        android:icon="@drawable/online"
+        android:title="@string/mode_online" />
+
+</menu>

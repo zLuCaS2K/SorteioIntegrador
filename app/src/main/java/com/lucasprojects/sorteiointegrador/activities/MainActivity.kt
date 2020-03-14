@@ -1,7 +1,8 @@
-package com.lucasprojects.sorteiointegrador
+package com.lucasprojects.sorteiointegrador.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lucasprojects.sorteiointegrador.R
 
 class MainActivity : AppCompatActivity() {
 

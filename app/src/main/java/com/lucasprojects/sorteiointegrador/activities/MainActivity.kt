@@ -2,6 +2,7 @@ package com.lucasprojects.sorteiointegrador.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.lucasprojects.sorteiointegrador.R
@@ -14,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         /** Definindo a cor dos itens da NavigationView como nulas */
         navigationView.itemIconTintList = null
+        /** Abrir NavigationView */
+        imageMenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
         /** Definindo o NavController */
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
         /** Configurando a Navegação do App */

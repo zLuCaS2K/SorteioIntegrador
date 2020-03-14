@@ -1,7 +1,9 @@
 package com.lucasprojects.sorteiointegrador.activities
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -13,21 +15,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /** Definindo a cor dos itens da NavigationView como nulas */
+
         navigationView.itemIconTintList = null
-        /** Abrir NavigationView */
         imageMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        /** Definindo o NavController */
+
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
-        /** Configurando a Navegação do App */
         NavigationUI.setupWithNavController(navigationView, navController)
-        /** Execução com a navegação baseada no destino */
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.navOffline -> textMode.text = getString(R.string.off)
-                R.id.navOnline -> textMode.text = getString(R.string.on)
+                R.id.navOffline -> {
+                    val textMode = findViewById<TextView>(R.id.textMode)
+                    textMode.text = getString(R.string.off)
+                    textMode.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
+                }
+                R.id.navOnline -> {
+                    val textMode = findViewById<TextView>(R.id.textMode)
+                    textMode.text = getString(R.string.on)
+                    textMode.setTextColor(ContextCompat.getColor(this, R.color.colorGreen))
+                }
             }
         }
     }

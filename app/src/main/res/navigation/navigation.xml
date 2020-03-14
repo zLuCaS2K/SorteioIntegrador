@@ -9,10 +9,20 @@
     <fragment
         android:id="@+id/navOffline"
         android:name="com.lucasprojects.sorteiointegrador.fragments.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="mode"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/navOnline"
         android:name="com.lucasprojects.sorteiointegrador.fragments.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="mode"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

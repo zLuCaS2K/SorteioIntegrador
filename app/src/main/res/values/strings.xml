@@ -3,6 +3,7 @@
     <string name="app_description">Desafio</string>
     <string name="mode_offline">Modo Offline</string>
     <string name="mode_online">Modo Online</string>
-    <string name="on">Ativado</string>
-    <string name="off">Desativado</string>
+    <string name="on">Online</string>
+    <string name="off">Offline</string>
+    <string name="mode">MODO:</string>
 </resources>

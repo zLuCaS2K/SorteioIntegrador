@@ -89,12 +89,13 @@ class HomeFragment : Fragment() {
                 val inflater = layoutInflater
                 val inflaterView = inflater.inflate(R.layout.custom_click_team, null)
                 val btnRaffle = inflaterView.findViewById<Button>(R.id.btnRaffle)
+                val btnExit = inflaterView.findViewById<Button>(R.id.btnExit)
                 val alertDialog = AlertDialog.Builder(view?.context)
                 alertDialog.setView(inflaterView)
                 alertDialog.setCancelable(false)
                 val dialogRaffle = alertDialog.create()
                 dialogRaffle.show()
-                var person : Person? = null
+                var person: Person? = null
                 btnRaffle.setOnClickListener {
                     when (idTeam) {
                         1 -> person = arrayOne[Random.nextInt(arrayOne.size)]
@@ -104,6 +105,9 @@ class HomeFragment : Fragment() {
                         5 -> person = arrayFive[Random.nextInt(arrayFive.size)]
                     }
                     Toast.makeText(view?.context, "${person?.name}", Toast.LENGTH_SHORT).show()
+                }
+                btnExit.setOnClickListener {
+                    dialogRaffle.dismiss()
                 }
             }
         }

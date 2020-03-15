@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/model_gradient_blue"
-            android:text="@string/raffle"
+            android:text="@string/exit"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btnRaffle"

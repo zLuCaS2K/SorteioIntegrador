@@ -7,4 +7,5 @@
     <string name="off">Offline</string>
     <string name="mode">MODO:</string>
     <string name="raffle">Sorteio</string>
+    <string name="exit">Sair</string>
 </resources>

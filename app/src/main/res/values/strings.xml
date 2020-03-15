@@ -6,6 +6,6 @@
     <string name="on">Online</string>
     <string name="off">Offline</string>
     <string name="mode">MODO:</string>
-    <string name="raffle">Sorteio</string>
+    <string name="raffle">Sortear</string>
     <string name="exit">Sair</string>
 </resources>

@@ -44,4 +44,6 @@ dependencies {
     // Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0-alpha03'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha03'
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

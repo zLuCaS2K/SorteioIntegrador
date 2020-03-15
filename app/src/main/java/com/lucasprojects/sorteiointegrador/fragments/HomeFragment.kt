@@ -18,10 +18,12 @@ import com.lucasprojects.sorteiointegrador.constants.Constants
 import com.lucasprojects.sorteiointegrador.entities.Person
 import com.lucasprojects.sorteiointegrador.entities.Team
 import com.lucasprojects.sorteiointegrador.listenner.OnClickListenner
+import com.squareup.picasso.Picasso
 import kotlin.random.Random
 
 class HomeFragment : Fragment() {
 
+    private var mFilterMode: Int = 0
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mOnClickListenner: OnClickListenner
 
@@ -66,8 +68,12 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val argument = arguments
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        createInteractionTeams()
+        if (argument != null) {
+            mFilterMode = argument.getInt("mode")
+        }
+        createInteractionTeams(mFilterMode)
         mRecyclerView = view.findViewById(R.id.recyclerView)
         createTeamsArrays()
         return view
@@ -85,7 +91,7 @@ class HomeFragment : Fragment() {
         mRecyclerView.layoutManager = LinearLayoutManager(view?.context)
     }
 
-    private fun createInteractionTeams() {
+    private fun createInteractionTeams(mFilter: Int) {
         mOnClickListenner = object : OnClickListenner {
             override fun onClickItem(idTeam: Int) {
                 val inflater = layoutInflater
@@ -98,9 +104,12 @@ class HomeFragment : Fragment() {
                 when (idTeam) {
                     Constants.TEAMS_ID.TEAMONE -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMONE
                     Constants.TEAMS_ID.TEAMTWO -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMTWO
-                    Constants.TEAMS_ID.TEAMTHREE -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMTHREE
-                    Constants.TEAMS_ID.TEAMFOUR -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMFOUR
-                    Constants.TEAMS_ID.TEAMFIVE -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMFIVE
+                    Constants.TEAMS_ID.TEAMTHREE -> textNameTeam.text =
+                        Constants.TEAMS_NAMES.TEAMTHREE
+                    Constants.TEAMS_ID.TEAMFOUR -> textNameTeam.text =
+                        Constants.TEAMS_NAMES.TEAMFOUR
+                    Constants.TEAMS_ID.TEAMFIVE -> textNameTeam.text =
+                        Constants.TEAMS_NAMES.TEAMFIVE
                 }
                 val alertDialog = AlertDialog.Builder(view?.context)
                 alertDialog.setView(inflaterView)
@@ -109,6 +118,7 @@ class HomeFragment : Fragment() {
                 dialogRaffle.show()
                 var person: Person? = null
                 btnRaffle.setOnClickListener {
+
                     when (idTeam) {
                         1 -> person = arrayOne[Random.nextInt(arrayOne.size)]
                         2 -> person = arrayTwo[Random.nextInt(arrayTwo.size)]
@@ -117,33 +127,38 @@ class HomeFragment : Fragment() {
                         5 -> person = arrayFive[Random.nextInt(arrayFive.size)]
                     }
 
-                    when (person?.name) {
-                        "alan" -> imageMember.setImageResource(R.drawable.alan)
-                        "alicia" -> imageMember.setImageResource(R.drawable.alicia)
-                        "augusto" -> imageMember.setImageResource(R.drawable.augusto)
-                        "bruno" -> imageMember.setImageResource(R.drawable.bruno)
-                        "caio" -> imageMember.setImageResource(R.drawable.caio)
-                        "danylo" -> imageMember.setImageResource(R.drawable.danylo)
-                        "De Cellis" -> imageMember.setImageResource(R.drawable.decellis)
-                        "eduardo" -> imageMember.setImageResource(R.drawable.eduardo)
-                        "fabricio" -> imageMember.setImageResource(R.drawable.fabricio)
-                        "felipe" -> imageMember.setImageResource(R.drawable.felipe)
-                        "gabriel" -> imageMember.setImageResource(R.drawable.gabriel)
-                        "hiago" -> imageMember.setImageResource(R.drawable.hiago)
-                        "icaro" -> imageMember.setImageResource(R.drawable.icaro)
-                        "jorge" -> imageMember.setImageResource(R.drawable.jorge)
-                        "lara" -> imageMember.setImageResource(R.drawable.lara)
-                        "lucas" -> imageMember.setImageResource(R.drawable.lucas)
-                        "matheus" -> imageMember.setImageResource(R.drawable.matheus)
-                        "sara" -> imageMember.setImageResource(R.drawable.sara)
-                        "suennaby" -> imageMember.setImageResource(R.drawable.suennaby)
-                        "thayrone" -> imageMember.setImageResource(R.drawable.thayrone)
-                        "thiago" -> imageMember.setImageResource(R.drawable.thiago)
-                        "victor" -> imageMember.setImageResource(R.drawable.victor)
-                        "vinicius" -> imageMember.setImageResource(R.drawable.vinicius)
+                    if (mFilter == 0) {
+                        when (person?.name) {
+                            "alan" -> imageMember.setImageResource(R.drawable.alan)
+                            "alicia" -> imageMember.setImageResource(R.drawable.alicia)
+                            "augusto" -> imageMember.setImageResource(R.drawable.augusto)
+                            "bruno" -> imageMember.setImageResource(R.drawable.bruno)
+                            "caio" -> imageMember.setImageResource(R.drawable.caio)
+                            "danylo" -> imageMember.setImageResource(R.drawable.danylo)
+                            "De Cellis" -> imageMember.setImageResource(R.drawable.decellis)
+                            "eduardo" -> imageMember.setImageResource(R.drawable.eduardo)
+                            "fabricio" -> imageMember.setImageResource(R.drawable.fabricio)
+                            "felipe" -> imageMember.setImageResource(R.drawable.felipe)
+                            "gabriel" -> imageMember.setImageResource(R.drawable.gabriel)
+                            "hiago" -> imageMember.setImageResource(R.drawable.hiago)
+                            "icaro" -> imageMember.setImageResource(R.drawable.icaro)
+                            "jorge" -> imageMember.setImageResource(R.drawable.jorge)
+                            "lara" -> imageMember.setImageResource(R.drawable.lara)
+                            "lucas" -> imageMember.setImageResource(R.drawable.lucas)
+                            "matheus" -> imageMember.setImageResource(R.drawable.matheus)
+                            "sara" -> imageMember.setImageResource(R.drawable.sara)
+                            "suennaby" -> imageMember.setImageResource(R.drawable.suennaby)
+                            "thayrone" -> imageMember.setImageResource(R.drawable.thayrone)
+                            "thiago" -> imageMember.setImageResource(R.drawable.thiago)
+                            "victor" -> imageMember.setImageResource(R.drawable.victor)
+                            "vinicius" -> imageMember.setImageResource(R.drawable.vinicius)
+                        }
+                        textNameMember.text = person?.name?.toUpperCase()
+                    } else {
+                        Picasso.get().load("https://avatars1.githubusercontent.com/u/${person?.idGit}").into(imageMember)
+                        textNameMember.text = person?.name?.toUpperCase()
                     }
 
-                    textNameMember.text = person?.name?.toUpperCase()
                     Toast.makeText(view?.context, "${person?.name?.toUpperCase()}", Toast.LENGTH_SHORT).show()
                 }
                 btnExit.setOnClickListener {

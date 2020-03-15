@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
                 }
                 val alertDialog = AlertDialog.Builder(view?.context)
                 alertDialog.setView(inflaterView)
-                alertDialog.setCancelable(false)
+                alertDialog.setCancelable(true)
                 val dialogRaffle = alertDialog.create()
                 dialogRaffle.show()
                 var person: Person? = null

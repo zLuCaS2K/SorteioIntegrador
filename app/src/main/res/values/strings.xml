@@ -7,5 +7,8 @@
     <string name="off">Offline</string>
     <string name="mode">MODO:</string>
     <string name="raffle">Sortear</string>
+    <string name="view_code">Ver Código</string>
     <string name="exit">Sair</string>
+    <string name="about">Sobre</string>
+    <string name="team">Lucas Santos, Gabriel Mariano, Fabricio Gondim</string>
 </resources>

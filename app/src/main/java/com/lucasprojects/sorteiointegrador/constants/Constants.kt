@@ -17,4 +17,8 @@ class Constants {
         const val TEAMFOUR = 4
         const val TEAMFIVE = 5
     }
+
+    object LINKS {
+        const val LINK_REPOSITORY = "https://github.com/zLuCaS2K/SorteioIntegrador"
+    }
 }

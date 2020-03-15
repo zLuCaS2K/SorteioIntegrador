@@ -63,6 +63,19 @@
             app:riv_oval="true" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnExit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/model_gradient_blue"
+            android:text="@string/raffle"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnRaffle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageMember" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRaffle"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -72,7 +85,7 @@
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnExit"
             app:layout_constraintTop_toBottomOf="@id/imageMember" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

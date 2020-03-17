@@ -1,6 +1,7 @@
 package com.lucasprojects.sorteiointegrador.activities
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         alertDialogAbout.setView(inflaterView)
         alertDialogAbout.setCancelable(true)
         val dialogAbout = alertDialogAbout.create()
+        if (dialogAbout.window != null) {
+            dialogAbout.window?.setBackgroundDrawable(ColorDrawable(0))
+        }
         dialogAbout.show()
         btnViewCode.setOnClickListener {
             val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(Constants.LINKS.LINK_REPOSITORY))

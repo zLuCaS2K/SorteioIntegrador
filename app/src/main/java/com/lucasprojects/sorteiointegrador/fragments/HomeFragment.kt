@@ -1,14 +1,20 @@
 package com.lucasprojects.sorteiointegrador.fragments
 
 import android.app.AlertDialog
+import android.content.Context
+import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,40 +34,40 @@ class HomeFragment : Fragment() {
     private lateinit var mOnClickListenner: OnClickListenner
 
     private val arrayOne = arrayOf(
-        Person(1, 47834248, "sara"),
-        Person(2, 47834260, "alicia"),
-        Person(3, 343190904, "lara")
+        Person(1, 47834248, Constants.PERSON_NAME.SARA),
+        Person(2, 47834260, Constants.PERSON_NAME.ALICIA),
+        Person(3, 43190904, Constants.PERSON_NAME.LARA)
     )
     private val arrayTwo = arrayOf(
-        Person(4, 47834734, "alan"),
-        Person(5, 14566722, "danylo"),
-        Person(6, 29796449, "victor"),
-        Person(7, 54503973, "felipe"),
-        Person(8, 47700368, "caio")
+        Person(4, 47834734, Constants.PERSON_NAME.ALAN),
+        Person(5, 14566722, Constants.PERSON_NAME.DANYLO),
+        Person(6, 29796449, Constants.PERSON_NAME.VICTOR),
+        Person(7, 54503973, Constants.PERSON_NAME.FELIPE),
+        Person(8, 47700368, Constants.PERSON_NAME.CAIO)
     )
     private val arrayThree =
         arrayOf(
-            Person(9, 47834365, "matheus"),
-            Person(10, 47751527, "De Cellis"),
-            Person(11, 47834230, "suennaby"),
-            Person(12, 42949476, "jorge"),
-            Person(13, 47834341, "augusto"),
-            Person(14, 47527659, "thiago")
+            Person(9, 47834365, Constants.PERSON_NAME.MATHEUS),
+            Person(10, 47751527, Constants.PERSON_NAME.DE_CELLIS),
+            Person(11, 47834230, Constants.PERSON_NAME.SUENNABY),
+            Person(12, 42949476, Constants.PERSON_NAME.JORGE),
+            Person(13, 47834341, Constants.PERSON_NAME.AUGUSTO),
+            Person(14, 47527659, Constants.PERSON_NAME.THIAGO)
         )
     private val arrayFour =
         arrayOf(
-            Person(15, 47834406, "gabriel"),
-            Person(16, 52612637, "lucas"),
-            Person(17, 47834318, "eduardo"),
-            Person(18, 47723471, "fabricio"),
-            Person(19, 47834216, "bruno")
+            Person(15, 47834406, Constants.PERSON_NAME.GABRIEL),
+            Person(16, 52612637, Constants.PERSON_NAME.LUCAS),
+            Person(17, 47834318, Constants.PERSON_NAME.EDUARDO),
+            Person(18, 47723471, Constants.PERSON_NAME.FABRICIO),
+            Person(19, 47834216, Constants.PERSON_NAME.BRUNO)
         )
     private val arrayFive = arrayOf(
-        Person(20, 47834261, "icaro"),
-        Person(21, 47747549, "vinicius"),
-        Person(22, 47834187, "tayrone"),
-        Person(23, 47834406, "carlos"),
-        Person(24, 47778635, "hiago")
+        Person(20, 47834261, Constants.PERSON_NAME.ICARO),
+        Person(21, 47747549, Constants.PERSON_NAME.VINICIUS),
+        Person(22, 47834187, Constants.PERSON_NAME.THAYRONE),
+        Person(23, 47834406, Constants.PERSON_NAME.CARLOS),
+        Person(24, 47778635, Constants.PERSON_NAME.HIAGO)
     )
 
     override fun onCreateView(
@@ -115,6 +121,9 @@ class HomeFragment : Fragment() {
                 alertDialog.setView(inflaterView)
                 alertDialog.setCancelable(true)
                 val dialogRaffle = alertDialog.create()
+                if (dialogRaffle.window != null) {
+                    dialogRaffle.window?.setBackgroundDrawable(ColorDrawable(0))
+                }
                 dialogRaffle.show()
                 var person: Person? = null
                 btnRaffle.setOnClickListener {
@@ -129,37 +138,58 @@ class HomeFragment : Fragment() {
 
                     if (mFilter == 0) {
                         when (person?.name) {
-                            "alan" -> imageMember.setImageResource(R.drawable.alan)
-                            "alicia" -> imageMember.setImageResource(R.drawable.alicia)
-                            "augusto" -> imageMember.setImageResource(R.drawable.augusto)
-                            "bruno" -> imageMember.setImageResource(R.drawable.bruno)
-                            "caio" -> imageMember.setImageResource(R.drawable.caio)
-                            "danylo" -> imageMember.setImageResource(R.drawable.danylo)
-                            "De Cellis" -> imageMember.setImageResource(R.drawable.decellis)
-                            "eduardo" -> imageMember.setImageResource(R.drawable.eduardo)
-                            "fabricio" -> imageMember.setImageResource(R.drawable.fabricio)
-                            "felipe" -> imageMember.setImageResource(R.drawable.felipe)
-                            "gabriel" -> imageMember.setImageResource(R.drawable.gabriel)
-                            "hiago" -> imageMember.setImageResource(R.drawable.hiago)
-                            "icaro" -> imageMember.setImageResource(R.drawable.icaro)
-                            "jorge" -> imageMember.setImageResource(R.drawable.jorge)
-                            "lara" -> imageMember.setImageResource(R.drawable.lara)
-                            "lucas" -> imageMember.setImageResource(R.drawable.lucas)
-                            "matheus" -> imageMember.setImageResource(R.drawable.matheus)
-                            "sara" -> imageMember.setImageResource(R.drawable.sara)
-                            "suennaby" -> imageMember.setImageResource(R.drawable.suennaby)
-                            "thayrone" -> imageMember.setImageResource(R.drawable.thayrone)
-                            "thiago" -> imageMember.setImageResource(R.drawable.thiago)
-                            "victor" -> imageMember.setImageResource(R.drawable.victor)
-                            "vinicius" -> imageMember.setImageResource(R.drawable.vinicius)
+                            Constants.PERSON_NAME.ALAN -> imageMember.setImageResource(R.drawable.alan)
+                            Constants.PERSON_NAME.ALICIA -> imageMember.setImageResource(R.drawable.alicia)
+                            Constants.PERSON_NAME.AUGUSTO -> imageMember.setImageResource(R.drawable.augusto)
+                            Constants.PERSON_NAME.BRUNO -> imageMember.setImageResource(R.drawable.bruno)
+                            Constants.PERSON_NAME.CAIO -> imageMember.setImageResource(R.drawable.caio)
+                            Constants.PERSON_NAME.CARLOS -> imageMember.setImageResource(R.drawable.carlos)
+                            Constants.PERSON_NAME.DANYLO -> imageMember.setImageResource(R.drawable.danylo)
+                            Constants.PERSON_NAME.DE_CELLIS -> imageMember.setImageResource(R.drawable.decellis)
+                            Constants.PERSON_NAME.EDUARDO -> imageMember.setImageResource(R.drawable.eduardo)
+                            Constants.PERSON_NAME.FABRICIO -> imageMember.setImageResource(R.drawable.fabricio)
+                            Constants.PERSON_NAME.FELIPE -> imageMember.setImageResource(R.drawable.felipe)
+                            Constants.PERSON_NAME.GABRIEL -> imageMember.setImageResource(R.drawable.gabriel)
+                            Constants.PERSON_NAME.HIAGO -> imageMember.setImageResource(R.drawable.hiago)
+                            Constants.PERSON_NAME.ICARO -> imageMember.setImageResource(R.drawable.icaro)
+                            Constants.PERSON_NAME.JORGE -> imageMember.setImageResource(R.drawable.jorge)
+                            Constants.PERSON_NAME.LARA -> imageMember.setImageResource(R.drawable.lara)
+                            Constants.PERSON_NAME.LUCAS -> imageMember.setImageResource(R.drawable.lucas)
+                            Constants.PERSON_NAME.MATHEUS -> imageMember.setImageResource(R.drawable.matheus)
+                            Constants.PERSON_NAME.SARA -> imageMember.setImageResource(R.drawable.sara)
+                            Constants.PERSON_NAME.SUENNABY -> imageMember.setImageResource(R.drawable.suennaby)
+                            Constants.PERSON_NAME.THAYRONE -> imageMember.setImageResource(R.drawable.thayrone)
+                            Constants.PERSON_NAME.THIAGO -> imageMember.setImageResource(R.drawable.thiago)
+                            Constants.PERSON_NAME.VICTOR -> imageMember.setImageResource(R.drawable.victor)
+                            Constants.PERSON_NAME.VINICIUS -> imageMember.setImageResource(R.drawable.vinicius)
                         }
+                        val animation = AnimationUtils.loadAnimation(view?.context, R.anim.zoom_in)
+                        imageMember.startAnimation(animation)
                         textNameMember.text = person?.name?.toUpperCase()
                     } else {
-                        Picasso.get().load("https://avatars1.githubusercontent.com/u/${person?.idGit}").into(imageMember)
-                        textNameMember.text = person?.name?.toUpperCase()
+                        val cm =
+                            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+                        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+                        if (isConnected) {
+                            Picasso.get()
+                                .load("https://avatars1.githubusercontent.com/u/${person?.idGit}")
+                                .into(imageMember)
+                            val animation =
+                                AnimationUtils.loadAnimation(view?.context, R.anim.zoom_in)
+                            imageMember.startAnimation(animation)
+                            textNameMember.text = person?.name?.toUpperCase()
+                        } else {
+                            textNameMember.text = getString(R.string.no_conected)
+                            textNameMember.setTextColor(
+                                ContextCompat.getColor(
+                                    view!!.context,
+                                    R.color.colorRed
+                                )
+                            )
+                            Toast.makeText(view?.context, "Sem Conexão", Toast.LENGTH_SHORT).show()
+                        }
                     }
-
-                    Toast.makeText(view?.context, "${person?.name?.toUpperCase()}", Toast.LENGTH_SHORT).show()
                 }
                 btnExit.setOnClickListener {
                     dialogRaffle.dismiss()

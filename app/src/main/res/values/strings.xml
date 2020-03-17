@@ -10,5 +10,6 @@
     <string name="view_code">Ver Código</string>
     <string name="exit">Sair</string>
     <string name="about">Sobre</string>
-    <string name="team">Lucas Santos, Gabriel Mariano, Fabricio Gondim</string>
+    <string name="team">Lucas Santos | Gabriel Mariano | Fabricio Gondin</string>
+    <string name="no_conected">Sem Conexão</string>
 </resources>

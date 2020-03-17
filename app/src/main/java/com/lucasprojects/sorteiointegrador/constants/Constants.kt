@@ -18,6 +18,33 @@ class Constants {
         const val TEAMFIVE = 5
     }
 
+    object PERSON_NAME {
+        const val ALICIA = "Alicia"
+        const val ALAN = "Alan"
+        const val AUGUSTO = "Augusto"
+        const val BRUNO = "Bruno"
+        const val CAIO = "Caio"
+        const val CARLOS = "Carlos"
+        const val DANYLO = "Danylo"
+        const val DE_CELLIS = "De Cellis"
+        const val EDUARDO = "Eduardo"
+        const val FABRICIO = "Fabricio"
+        const val FELIPE = "Felipe"
+        const val GABRIEL = "Gabriel"
+        const val HIAGO = "Hiago"
+        const val ICARO = "Icaro"
+        const val JORGE = "Jorge"
+        const val LARA = "Lara"
+        const val LUCAS = "Lucas"
+        const val MATHEUS = "Matheus"
+        const val SARA = "Sara"
+        const val SUENNABY = "Suennaby"
+        const val THAYRONE = "Thayrone"
+        const val THIAGO = "Thiago"
+        const val VICTOR = "Victor"
+        const val VINICIUS = "Vinicius"
+    }
+
     object LINKS {
         const val LINK_REPOSITORY = "https://github.com/zLuCaS2K/SorteioIntegrador"
     }

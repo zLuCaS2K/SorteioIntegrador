@@ -1,6 +1,7 @@
 ## SorteioIntegrador
 Aplicativo de sorteio para definir quem irá apresentar o progresso de desenvolvimento do PI da semana de cada equipe do 5° semestre de ADS usando a linguagem Kotlin.
 ## Bibliotecas
+[Picasso](https://github.com/square/picasso)
 [Rounded Image View](https://github.com/vinc3m1/RoundedImageView)
 ## Screenshots
 ![Screenshot_1585347153](https://user-images.githubusercontent.com/52612637/77810629-31aa8f00-7074-11ea-8d3e-5f2ed06de0fc.png) ![Screenshot_1585347148](https://user-images.githubusercontent.com/52612637/77810637-3c652400-7074-11ea-9c2d-84311ab247a4.png)

@@ -34,40 +34,40 @@ class HomeFragment : Fragment() {
     private lateinit var mOnClickListenner: OnClickListenner
 
     private val arrayOne = arrayOf(
-        Person(1, 47834248, Constants.PERSON_NAME.SARA),
-        Person(2, 47834260, Constants.PERSON_NAME.ALICIA),
-        Person(3, 43190904, Constants.PERSON_NAME.LARA)
+        Person(47834248, Constants.PERSON_NAME.SARA),
+        Person(47834260, Constants.PERSON_NAME.ALICIA),
+        Person(43190904, Constants.PERSON_NAME.LARA)
     )
     private val arrayTwo = arrayOf(
-        Person(4, 47834734, Constants.PERSON_NAME.ALAN),
-        Person(5, 14566722, Constants.PERSON_NAME.DANYLO),
-        Person(6, 29796449, Constants.PERSON_NAME.VICTOR),
-        Person(7, 54503973, Constants.PERSON_NAME.FELIPE),
-        Person(8, 47700368, Constants.PERSON_NAME.CAIO)
+        Person(47834734, Constants.PERSON_NAME.ALAN),
+        Person(14566722, Constants.PERSON_NAME.DANYLO),
+        Person(29796449, Constants.PERSON_NAME.VICTOR),
+        Person(54503973, Constants.PERSON_NAME.FELIPE),
+        Person(47700368, Constants.PERSON_NAME.CAIO)
     )
     private val arrayThree =
         arrayOf(
-            Person(9, 47834365, Constants.PERSON_NAME.MATHEUS),
-            Person(10, 47751527, Constants.PERSON_NAME.DE_CELLIS),
-            Person(11, 47834230, Constants.PERSON_NAME.SUENNABY),
-            Person(12, 42949476, Constants.PERSON_NAME.JORGE),
-            Person(13, 47834341, Constants.PERSON_NAME.AUGUSTO),
-            Person(14, 47527659, Constants.PERSON_NAME.THIAGO)
+            Person(47834365, Constants.PERSON_NAME.MATHEUS),
+            Person(47751527, Constants.PERSON_NAME.DE_CELLIS),
+            Person(47834230, Constants.PERSON_NAME.SUENNABY),
+            Person(42949476, Constants.PERSON_NAME.JORGE),
+            Person(47834341, Constants.PERSON_NAME.AUGUSTO),
+            Person(47527659, Constants.PERSON_NAME.THIAGO)
         )
     private val arrayFour =
         arrayOf(
-            Person(15, 47834406, Constants.PERSON_NAME.GABRIEL),
-            Person(16, 52612637, Constants.PERSON_NAME.LUCAS),
-            Person(17, 47834318, Constants.PERSON_NAME.EDUARDO),
-            Person(18, 47723471, Constants.PERSON_NAME.FABRICIO),
-            Person(19, 47834216, Constants.PERSON_NAME.BRUNO)
+            Person(47834406, Constants.PERSON_NAME.GABRIEL),
+            Person(52612637, Constants.PERSON_NAME.LUCAS),
+            Person(47834318, Constants.PERSON_NAME.EDUARDO),
+            Person(47723471, Constants.PERSON_NAME.FABRICIO),
+            Person(47834216, Constants.PERSON_NAME.BRUNO)
         )
     private val arrayFive = arrayOf(
-        Person(20, 47834261, Constants.PERSON_NAME.ICARO),
-        Person(21, 47747549, Constants.PERSON_NAME.VINICIUS),
-        Person(22, 47834187, Constants.PERSON_NAME.THAYRONE),
-        Person(23, 47834406, Constants.PERSON_NAME.CARLOS),
-        Person(24, 47778635, Constants.PERSON_NAME.HIAGO)
+        Person(47834261, Constants.PERSON_NAME.ICARO),
+        Person(47747549, Constants.PERSON_NAME.VINICIUS),
+        Person(47834187, Constants.PERSON_NAME.THAYRONE),
+        Person(47834406, Constants.PERSON_NAME.CARLOS),
+        Person(47778635, Constants.PERSON_NAME.HIAGO)
     )
 
     override fun onCreateView(
@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
         val argument = arguments
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         if (argument != null) {
-            mFilterMode = argument.getInt("mode")
+            mFilterMode = argument.getInt(Constants.MODE.MODE_APP)
         }
         createInteractionTeams(mFilterMode)
         mRecyclerView = view.findViewById(R.id.recyclerView)
@@ -110,12 +110,9 @@ class HomeFragment : Fragment() {
                 when (idTeam) {
                     Constants.TEAMS_ID.TEAMONE -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMONE
                     Constants.TEAMS_ID.TEAMTWO -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMTWO
-                    Constants.TEAMS_ID.TEAMTHREE -> textNameTeam.text =
-                        Constants.TEAMS_NAMES.TEAMTHREE
-                    Constants.TEAMS_ID.TEAMFOUR -> textNameTeam.text =
-                        Constants.TEAMS_NAMES.TEAMFOUR
-                    Constants.TEAMS_ID.TEAMFIVE -> textNameTeam.text =
-                        Constants.TEAMS_NAMES.TEAMFIVE
+                    Constants.TEAMS_ID.TEAMTHREE -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMTHREE
+                    Constants.TEAMS_ID.TEAMFOUR -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMFOUR
+                    Constants.TEAMS_ID.TEAMFIVE -> textNameTeam.text = Constants.TEAMS_NAMES.TEAMFIVE
                 }
                 val alertDialog = AlertDialog.Builder(view?.context)
                 alertDialog.setView(inflaterView)
@@ -125,17 +122,8 @@ class HomeFragment : Fragment() {
                     dialogRaffle.window?.setBackgroundDrawable(ColorDrawable(0))
                 }
                 dialogRaffle.show()
-                var person: Person? = null
                 btnRaffle.setOnClickListener {
-
-                    when (idTeam) {
-                        1 -> person = arrayOne[Random.nextInt(arrayOne.size)]
-                        2 -> person = arrayTwo[Random.nextInt(arrayTwo.size)]
-                        3 -> person = arrayThree[Random.nextInt(arrayThree.size)]
-                        4 -> person = arrayFour[Random.nextInt(arrayFour.size)]
-                        5 -> person = arrayFive[Random.nextInt(arrayFive.size)]
-                    }
-
+                    val person = rafflePerson(idTeam)
                     if (mFilter == 0) {
                         when (person?.name) {
                             Constants.PERSON_NAME.ALAN -> imageMember.setImageResource(R.drawable.alan)
@@ -165,28 +153,19 @@ class HomeFragment : Fragment() {
                         }
                         val animation = AnimationUtils.loadAnimation(view?.context, R.anim.zoom_in)
                         imageMember.startAnimation(animation)
-                        textNameMember.text = person?.name?.toUpperCase()
+                        textNameMember.text = person?.name
                     } else {
-                        val cm =
-                            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
                         val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
                         if (isConnected) {
-                            Picasso.get()
-                                .load("https://avatars1.githubusercontent.com/u/${person?.idGit}")
-                                .into(imageMember)
-                            val animation =
-                                AnimationUtils.loadAnimation(view?.context, R.anim.zoom_in)
+                            Picasso.get().load("https://avatars1.githubusercontent.com/u/${person?.idGit}").into(imageMember)
+                            val animation = AnimationUtils.loadAnimation(view?.context, R.anim.zoom_in)
                             imageMember.startAnimation(animation)
-                            textNameMember.text = person?.name?.toUpperCase()
+                            textNameMember.text = person?.name
                         } else {
                             textNameMember.text = getString(R.string.no_conected)
-                            textNameMember.setTextColor(
-                                ContextCompat.getColor(
-                                    view!!.context,
-                                    R.color.colorRed
-                                )
-                            )
+                            textNameMember.setTextColor(ContextCompat.getColor(view!!.context, R.color.colorRed))
                             Toast.makeText(view?.context, "Sem Conexão", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -196,6 +175,18 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun rafflePerson(idTeam: Int): Person? {
+        var person : Person? = null
+        when (idTeam) {
+            1 -> person = arrayOne[Random.nextInt(arrayOne.size)]
+            2 -> person = arrayTwo[Random.nextInt(arrayTwo.size)]
+            3 -> person = arrayThree[Random.nextInt(arrayThree.size)]
+            4 -> person = arrayFour[Random.nextInt(arrayFour.size)]
+            5 -> person = arrayFive[Random.nextInt(arrayFive.size)]
+        }
+        return person
     }
 }
 

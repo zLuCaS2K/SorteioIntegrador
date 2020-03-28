@@ -48,4 +48,8 @@ class Constants {
     object LINKS {
         const val LINK_REPOSITORY = "https://github.com/zLuCaS2K/SorteioIntegrador"
     }
+
+    object MODE {
+        const val MODE_APP = "mode"
+    }
 }

@@ -16,7 +16,6 @@ import com.lucasprojects.sorteiointegrador.R
 import com.lucasprojects.sorteiointegrador.constants.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
